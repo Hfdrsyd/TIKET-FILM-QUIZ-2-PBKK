@@ -31,7 +31,7 @@
             </div>
             <div class="flex gap-6 mt-6">
                 <div class="bg-white shadow-sm border !border-gray-100 rounded-md px-4 py-6 w-1/2 space-y-4">
-                    <p class="font-medium">Alamat Pengiriman</p>
+                    <p class="font-medium">Alamat Email</p>
                     <input value="<?= $address ?>" id="address" name="address" type="text" placeholder="Masukkan alamat" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
                 </div>
                 <div class="bg-white shadow-sm border !border-gray-100 rounded-md px-4 py-6 w-1/2 space-y-4">
@@ -47,7 +47,6 @@
             </div>
             <section class="flex gap-6 mt-6">
                 <div class="bg-white shadow-sm border !border-gray-100 rounded-md px-4 py-6 w-1/2 space-y-4">
-                    <p class="font-medium">Alamat Pengiriman</p>
                     <p class="text-[15px]">J1 - Surabaya</p>
                     <div class="flex items-center gap-2.5">
                         <img src="<?= $film['cover'] ?>" alt="" width="100px">
@@ -92,7 +91,6 @@
                 </div>
                 <div class="w-1/2 bg-white shadow-sm border !border-gray-100 rounded-md px-4 py-6 space-y-6">
                     <div class="space-y-4">
-                        <p class="font-medium">Alamat Pengiriman</p>
                         <table class="text-[15px] space-y-1 w-full border-separate border-spacing-y-1">
                             <tbody class="">
                                 <tr>
