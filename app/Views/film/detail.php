@@ -148,6 +148,10 @@ if (!$session->has('username') || !$session->has('role') || !$session->has('id')
           <p class="">Subtotal</p>
           <p id='subtotal-price'>Rp <?= number_format($film['price']) ?></p>
         </div>
+        <br><p class="font-medium">Mau Duduk Dimana?</p>
+        <form id="form1">
+          <input required type="number" id="seat_input" class="seat_input" placeholder="Seat Number" oninput="updateHiddenInput()">
+        </form>
         <br><p class="font-medium">Mau Nonton Kapan?</p>
         <p class="text-sm">Jadwal Tayang :</p>
         <?php if (!empty($schedules)) : ?>
@@ -174,6 +178,7 @@ if (!$session->has('username') || !$session->has('role') || !$session->has('id')
           <input type="hidden" id="count" name="count" value=<?= 1 ?>>
           <input type="hidden" step=".01" id="total_price" name="total_price" value=<?= $film['price'] ?>>
           <input type="hidden" id="jadwal_id" name="jadwal_id" value="">
+          <input type="hidden" id="seat" name="seat" value="">
           <button type="submit" class="rounded-lg bg-sky-700/90 hover:bg-sky-700 text-white w-full min-h-[2.25rem] md:min-h-[2.5rem] flex items-center justify-center text-sm mt-4">Beli Sekarang</button>
         </form>
       </div>
@@ -255,8 +260,14 @@ if (!$session->has('username') || !$session->has('role') || !$session->has('id')
       const selectedSchedule = document.querySelector(`.schedule-item[data-schedule-id='${scheduleId}']`);
       selectedSchedule.classList.add('selected');
 
-      // Set the input value to the selected schedule ID
       document.getElementById('jadwal_id').value = scheduleId;
+    }
+  </script>
+  <script>
+    function updateHiddenInput() {
+      var inputValue = document.getElementById('seat_input').value;
+
+      document.getElementById('seat').value = inputValue;
     }
   </script>
 

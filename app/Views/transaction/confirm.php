@@ -70,6 +70,10 @@
                                     <td><?= $schedule['date'] ?> // <?= $schedule['time'] ?> </td>
                                 </tr>
                                 <tr>
+                                    <td class="font-medium">Kursi :</td>
+                                    <td><?= $transaction['seat'] ?></td>
+                                </tr>
+                                <tr>
                                     <td class="font-medium">Jumlah Tiket :</td>
                                     <td> <?= $transaction['count'] ?></td>
                                 </tr>
@@ -126,6 +130,7 @@
         <input type="hidden" id="film_id" name="film_id" value=<?= $transaction['film_id'] ?>>
         <input type="hidden" id="user_id" name="user_id" value=<?= $transaction['user_id'] ?>>
         <input type="hidden" id="jadwal_id" name="jadwal_id" value=<?= $transaction['jadwal_id'] ?>>
+        <input type="hidden" id="seat" name="seat" value=<?= $transaction['seat'] ?>>
         <input type="hidden" id="count" name="count" value=<?= $transaction['count'] ?>>
         <input type="hidden" step=".01" id="total_price" name="total_price" value=<?= $transaction['total_price'] ?>>
     </form>
