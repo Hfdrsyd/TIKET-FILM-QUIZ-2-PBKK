@@ -45,6 +45,20 @@ class TransactionsController extends BaseController
 
   public function prepare()
   {
+    $model_transaction = new Transactions();
+
+    $seat = $this->request->getVar('seat');
+    if ($seat < 1 || $seat > 50) {
+      return redirect()->back()->with('error', 'Range Kursi 1 - 50');
+    }
+
+    $sameSeat = $model_transaction->where('seat', $seat)
+                                  ->where('jadwal_id', $this->request->getVar('jadwal_id'))
+                                  ->first();
+    if ($sameSeat) {
+      return redirect()->back()->with('error', 'Kursi sudah dipesan');
+    }
+
     $transaction = [
 
       'user_id' => $this->request->getVar('user_id'),
@@ -52,6 +66,7 @@ class TransactionsController extends BaseController
       'jadwal_id' => $this->request->getVar('jadwal_id'),
       'total_price' => $this->request->getVar('total_price'),
       'count' => $this->request->getVar('count'),
+      'seat' => $this->request->getVar('seat'),
     ];
 
     $user = new Users();
@@ -78,6 +93,7 @@ class TransactionsController extends BaseController
   }
 
   public function payment() {
+
     $data = [
       'id' => Uuid::uuid(),
       'user_id' => $this->request->getVar('user_id'),
@@ -87,6 +103,7 @@ class TransactionsController extends BaseController
       'count' => $this->request->getVar('count'),
       'address' => $this->request->getVar('address'),
       'payment_method' => $this->request->getVar('payment_method'),
+      'seat' => $this->request->getVar('seat'),
     ];
 
     $trans = new Transactions();

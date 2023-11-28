@@ -37,6 +37,10 @@ class Transactions extends Migration
                 'type' => 'TEXT',
                 'null' => true,
             ],
+            'seat'       => [
+                'type' => 'INT',
+                'unsigned' => true,
+            ],
             'payment_method'       => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',

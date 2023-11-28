@@ -48,6 +48,7 @@ if (!$session->has('username') || !$session->has('role') || !$session->has('id')
                 <p> <span class="font-medium">Direktor :</span> <?= $transaction['author']?></p>
                 <p> <span class="font-medium">Judul :</span> <?= $transaction['title']?></p>
                 <p> <span class="font-medium">Jadwal :</span> <?= $transaction['date']?> // <?= $transaction['time']?></p>
+                <p> <span class="font-medium">Kursi :</span> <?= $transaction['seat']?></p>
                 <p> <span class="font-medium">Jumlah :</span> <?= $transaction['count']?></p>
                 <p> <span class="font-medium">Total harga :</span> Rp <?= $transaction['total_price']?></p>
               </div>

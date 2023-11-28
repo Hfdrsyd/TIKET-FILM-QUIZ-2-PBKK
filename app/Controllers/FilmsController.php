@@ -72,6 +72,12 @@ class FilmsController extends BaseController
 
     public function create()
     {
+        $session = \Config\Services::session();
+        $role = $session->get('role');
+        if($role !== 'admin'){
+            return redirect()->route('home.index');
+        }
+
         $model = new Films();
 
         $cover = $this->request->getFile('cover'); 
@@ -94,7 +100,13 @@ class FilmsController extends BaseController
 
             $model->insert($data);
 
-            return redirect()->route('home.index');
+            $film = $model->find($data['id']);
+
+            return view('film/schedule', [
+                'film' => $film,
+                'role' => $role,
+                'error' => null
+            ]);
         } else {
             // Handle file upload error
             return redirect()->back()->with('error', 'Failed to upload the cover image.');

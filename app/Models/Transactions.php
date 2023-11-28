@@ -21,6 +21,7 @@ class Transactions extends Model
     'total_price',
     'count',
     'address',
+    'seat',
     'payment_method',
   ];
 
