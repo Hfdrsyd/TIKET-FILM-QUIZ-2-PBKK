@@ -15,13 +15,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         * {
-        font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
-    <?php echo view('layouts/navbar')?>
+    <?php echo view('layouts/navbar') ?>
     <form action="<?= route_to('transaction.payment') ?>" method="post">
         <main class="min-h-screen py-32 w-10/12 mx-auto">
             <h1 class="text-2xl font-semibold">Checkout</h1>
@@ -31,11 +32,11 @@
             <div class="flex gap-6 mt-6">
                 <div class="bg-white shadow-sm border !border-gray-100 rounded-md px-4 py-6 w-1/2 space-y-4">
                     <p class="font-medium">Alamat Pengiriman</p>
-                    <input value="<?= $address?>" id="address" name="address" type="text" placeholder="Masukkan alamat" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
+                    <input value="<?= $address ?>" id="address" name="address" type="text" placeholder="Masukkan alamat" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
                 </div>
                 <div class="bg-white shadow-sm border !border-gray-100 rounded-md px-4 py-6 w-1/2 space-y-4">
                     <p class="font-medium">Metode Pembayaran</p>
-                    <select name="payment_method" id="payment_method" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none"> 
+                    <select name="payment_method" id="payment_method" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
                         <option value="BCA">BCA</option>
                         <option value="Mandiri">Mandiri</option>
                         <option value="Shopee">Shopee</option>
@@ -49,22 +50,40 @@
                     <p class="font-medium">Alamat Pengiriman</p>
                     <p class="text-[15px]">J1 - Surabaya</p>
                     <div class="flex items-center gap-2.5">
-                        <img src="<?= $film['cover']?>" alt="" width="100px">
+                        <img src="<?= $film['cover'] ?>" alt="" width="100px">
                         <table class="text-[15px] space-y-1 border-separate border-spacing-x-4">
                             <tbody class="">
-                                <tr><td class="font-medium">Direktor :</td> <td><?= $film['author']?></td></tr>
-                                <tr><td class="font-medium">Judul :</td> <td><?= $film['title']?></td></tr>
-                                <tr><td class="font-medium">Studio :</td> <td><?= $film['publisher']?></td></tr>
-                                <tr><td class="font-medium">Jadwal :</td> <td><?= $schedule['date']?> // <?= $schedule['time']?> </td></tr>
-                                <tr><td class="font-medium">Jumlah Tiket :</td> <td> <?= $transaction['count']?></td></tr>
-                                <tr><td class="font-medium">Subtotal :</td> <td>Rp <?= number_format($transaction['total_price'])?></td></tr>
+                                <tr>
+                                    <td class="font-medium">Direktor :</td>
+                                    <td><?= $film['author'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">Judul :</td>
+                                    <td><?= $film['title'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">Studio :</td>
+                                    <td><?= $film['publisher'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">Jadwal :</td>
+                                    <td><?= $schedule['date'] ?> // <?= $schedule['time'] ?> </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">Jumlah Tiket :</td>
+                                    <td> <?= $transaction['count'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">Subtotal :</td>
+                                    <td>Rp <?= number_format($transaction['total_price']) ?></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="h-px w-full bg-slate-200"></div>
                     <div class="flex items-center justify-between">
                         <p class="text-sm text-slate-500">Subtotal belum termasuk pajak</p>
-                        <p class="text-sm font-medium">Rp <?= number_format($transaction['total_price'])?></p>
+                        <p class="text-sm font-medium">Rp <?= number_format($transaction['total_price']) ?></p>
                     </div>
                 </div>
                 <div class="w-1/2 bg-white shadow-sm border !border-gray-100 rounded-md px-4 py-6 space-y-6">
@@ -72,20 +91,35 @@
                         <p class="font-medium">Alamat Pengiriman</p>
                         <table class="text-[15px] space-y-1 w-full border-separate border-spacing-y-1">
                             <tbody class="">
-                                <tr><td class="">Subtotal harga :</td> <td class="text-end">Rp <?= number_format($transaction['total_price'])?></td></tr>
-                                <tr><td class="">Pajak (10%) :</td> <td class="text-end">Rp <?= $transaction['count'] * $transaction['total_price']?></td></tr>
-                                <tr><td class="text-red-500">Biaya pengiriman :</td> <td class="text-red-500 text-end">Rp <?= 0?></td></tr>
-                                <tr><td class="text-red-500">Diskon produk :</td> <td class="text-red-500 text-end">Rp <?= 0?></td></tr>
-                                <tr><td class="text-red-500">Diskon pengiriman :</td> <td class="text-red-500 text-end">Rp <?= 0?></td></tr>
+                                <tr>
+                                    <td class="">Subtotal harga :</td>
+                                    <td class="text-end">Rp <?= number_format($transaction['total_price']) ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="">Pajak (10%) :</td>
+                                    <td class="text-end">Rp <?= $transaction['count'] * $transaction['total_price'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-red-500">Biaya pengiriman :</td>
+                                    <td class="text-red-500 text-end">Rp <?= 0 ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-red-500">Diskon produk :</td>
+                                    <td class="text-red-500 text-end">Rp <?= 0 ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-red-500">Diskon pengiriman :</td>
+                                    <td class="text-red-500 text-end">Rp <?= 0 ?></td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="h-px w-full bg-slate-200"></div>
                         <div class="flex items-center justify-between">
                             <p class="text-sm text-slate-500">Total harga</p>
-                            <p class="text-sm font-medium">Rp <?= number_format($transaction['total_price'] + ($transaction['count'] * $transaction['total_price']))?></p>
+                            <p class="text-sm font-medium">Rp <?= number_format($transaction['total_price'] + ($transaction['count'] * $transaction['total_price'])) ?></p>
                         </div>
                     </div>
-                    <button type="submit" class="rounded-lg bg-sky-700 text-white w-full min-h-[2.25rem] md:min-h-[2.5rem] flex items-center justify-center text-sm">Beli Sekarang</button>
+                    <button type="submit" id="beliButton" class="rounded-lg bg-sky-700 text-white w-full min-h-[2.25rem] md:min-h-[2.5rem] flex items-center justify-center text-sm" onclick="showNotification()">Beli Sekarang</button>
                 </div>
             </section>
         </main>
@@ -95,6 +129,17 @@
         <input type="hidden" id="count" name="count" value=<?= $transaction['count'] ?>>
         <input type="hidden" step=".01" id="total_price" name="total_price" value=<?= $transaction['total_price'] ?>>
     </form>
+    <script>
+        function showNotification() {
+            Swal.fire({
+                title: 'Terima kasih!',
+                text: 'Pembelian Anda berhasil.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                timer: 2000
+            });
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
