@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\Films;
 use App\Models\Users;
+use App\Models\Bioskops;
 use App\Models\CommentModel;
 use App\Models\Schedules;
 use Faker\Provider\Uuid;
@@ -19,23 +20,25 @@ class FilmsController extends BaseController
         $model = new Films();
 
         // Fetch all books
-        $data['films'] = $model->findAll();
+        $data = $model->findAll();
 
         // Retrieve session data
         $session = \Config\Services::session();
         $role = $session->get('role');
 
         $model_comments = new CommentModel();
-            $user_id = $session->get('id');
-            $comments = $model_comments->select('comments.id as comments_id, comments.*, users.*')
+        $user_id = $session->get('id');
+        $comments = $model_comments->select('comments.id as comments_id, comments.*, users.*')
         ->join('users', 'users.id = comments.user_id')->findAll();
-        
+        $model = new Bioskops();
+        $bioskop = $model->findAll();
         // Pass data to the view
         return view('welcome_message', [
-            'films' => $data['films'],
+            'films' => $data,
             'role' => $role,
-                'comments' => $comments,
-                'user_id' => $user_id
+            'comments' => $comments,
+            'user_id' => $user_id,
+            'bioskops' => $bioskop
         ]);
     }
 

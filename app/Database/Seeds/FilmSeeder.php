@@ -11,6 +11,8 @@ class FilmSeeder extends Seeder
     $faker = \Faker\Factory::create();
     $data = [];
     $jadwal = [];
+    $bioskop = [];
+    $bioskoprelations = [];
 
     $jadwal_film_id = [];
     for ($i = 1; $i <= 10; $i++) {
@@ -39,6 +41,27 @@ class FilmSeeder extends Seeder
       }
     }
 
+    for ($i = 1; $i <= 3; $i++) {
+        $bioskop[] = [
+          'nama' => $faker->sentence(2),
+          'lokasi' => $faker->sentence(2),
+          'fasilitas' => $faker->sentence(2),
+          'image' => 'assets/img/' . $i . '.jpg',
+        ];
+    }
+
+
+    for ($i = 1; $i <= 3; $i++) {
+      for ($j = 1; $j <= 3; $j++) {
+        $bioskoprelations[] = [
+          'bioskop_id' => $i,
+          'film_id' => $jadwal_film_id[$j + $i - 1],
+        ];
+      }
+    }
+
+
+
     //
     //    $data[] = [
     //      'id' => $faker->uuid,
@@ -57,5 +80,7 @@ class FilmSeeder extends Seeder
 
     $this->db->table('films')->insertBatch($data);
     $this->db->table('schedules')->insertBatch($jadwal);
+    $this->db->table('bioskops')->insertBatch($bioskop);
+    $this->db->table('bioskoprelations')->insertBatch($bioskoprelations);
   }
 }

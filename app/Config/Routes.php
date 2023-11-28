@@ -33,7 +33,11 @@ $routes->group('comment', function ($routes) {
   $routes->get('(:segment)', 'Comments::show/$1');
   $routes->post('create', 'Comments::create', ['as' => 'comment.create']);
 });
-
+$routes->group('bioskop', function ($routes) {
+  $routes->get('', 'BioskopController::index');
+  $routes->get('(:segment)', 'BioskopController::show/$1');
+  // $routes->post('create', 'Bioskops::create', ['as' => 'comment.create']);
+});
 $routes->group('transaction', function ($routes) {
   $routes->get('', 'TransactionsController::index', ['as' => 'transaction.history']);
   $routes->get('(:segment)', 'TransactionsController::show/$1');
