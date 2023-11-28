@@ -27,8 +27,8 @@
         <input required type="number" id="price" name="price" placeholder="Price" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
         <input required type="text" id="author" name="author" placeholder="director" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
         <input required type="text" id="publisher" name="publisher" placeholder="studio" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
-          <input required type="text" id="stock" name="stock" placeholder="stock" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
-          <input required type="text" id="genre" name="genre" placeholder="Genre" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
+        <input required type="text" id="stock" name="stock" placeholder="stock" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
+        <input required type="text" id="genre" name="genre" placeholder="Genre" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
         <input required type="file" id="cover" name="cover" accept="image/*" class="w-full min-h-[2.25rem] md:min-h-[2.5rem] rounded-lg shadow-sm px-3.5 border border-gray-300 focus:outline-none">
         <button type="submit" class="btn btn-primary bg-primary w-full !mt-6">Create Film Session</button>
     </form>

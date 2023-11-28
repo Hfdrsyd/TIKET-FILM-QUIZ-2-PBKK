@@ -121,7 +121,10 @@ if (!$session->has('username') || !$session->has('role') || !$session->has('id')
               <input type="hidden" name="_method" value="DELETE">
               <button type="submit" class="btn btn-outline-danger" style="margin-top: 20px;">Delete</button>
           </form>
-        <?php } ?>
+          <form action="<?= base_url('schedule/add/' . $film['id']) ?>" method="POST">
+              <button type="submit" class="btn btn-outline-danger" style="margin-top: 20px;">Tambah Jadwal Tayang</button>
+          </form>
+          <?php } ?>
 
       </div>
       <div class="bg-white rounded-lg shadow p-6 grow h-fit space-y-2.5 min-w-[15rem]">
